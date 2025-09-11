@@ -1,77 +1,65 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Debug Monika",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}/bin/run.js",
-            "args": ["-c", "${workspaceFolder}/test-econnreset.yml"],
-            "outFiles": [
-                "${workspaceFolder}/lib/**/*.js"
-            ],
-            "console": "integratedTerminal",
-            "internalConsoleOptions": "neverOpen",
-            "sourceMaps": true,
-            "env": {
-                "NODE_OPTIONS": "--enable-source-maps"
-            }
-        },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Debug Normal Config",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}/bin/run.js",
-            "args": [],
-            "outFiles": [
-                "${workspaceFolder}/lib/**/*.js"
-            ],
-            "console": "integratedTerminal",
-            "internalConsoleOptions": "neverOpen",
-            "sourceMaps": true,
-            "env": {
-                "NODE_OPTIONS": "--enable-source-maps"
-            }
-        },
-        {
-            "name": "Debug HTTP Request Module",
-            "type": "node",
-            "request": "launch",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}/bin/run.js",
-            "args": ["-c", "${workspaceFolder}/test-econnreset.yml"],
-            "outFiles": [
-                "${workspaceFolder}/lib/**/*.js"
-            ],
-            "console": "integratedTerminal",
-            "internalConsoleOptions": "neverOpen",
-            "sourceMaps": true,
-            "env": {
-                "NODE_OPTIONS": "--enable-source-maps"
-            },
-            "smartStep": true,
-            "resolveSourceMapLocations": [
-                "${workspaceFolder}/lib/**/*.js",
-                "${workspaceFolder}/src/**/*.ts"
-            ]
-        }
-    ],
-    "compounds": [
-        {
-            "name": "Debug Monika with Network Inspector",
-            "configurations": ["Debug Monika"],
-            "stopAll": true
-        }
-    ]
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Monika",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/bin/run.js",
+      "args": ["-c", "${workspaceFolder}/test-econnreset.yml"],
+      "outFiles": ["${workspaceFolder}/lib/**/*.js"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "sourceMaps": true,
+      "env": {
+        "NODE_OPTIONS": "--enable-source-maps"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Normal Config",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/bin/run.js",
+      "args": [],
+      "outFiles": ["${workspaceFolder}/lib/**/*.js"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "sourceMaps": true,
+      "env": {
+        "NODE_OPTIONS": "--enable-source-maps"
+      }
+    },
+    {
+      "name": "Debug HTTP Request Module",
+      "type": "node",
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/bin/run.js",
+      "args": ["-c", "${workspaceFolder}/test-econnreset.yml"],
+      "outFiles": ["${workspaceFolder}/lib/**/*.js"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "sourceMaps": true,
+      "env": {
+        "NODE_OPTIONS": "--enable-source-maps"
+      },
+      "smartStep": true,
+      "resolveSourceMapLocations": [
+        "${workspaceFolder}/lib/**/*.js",
+        "${workspaceFolder}/src/**/*.ts"
+      ]
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Debug Monika with Network Inspector",
+      "configurations": ["Debug Monika"],
+      "stopAll": true
+    }
+  ]
 }

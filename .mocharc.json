@@ -5,9 +5,7 @@
     "loader=ts-node/esm",
     "experimental-specifier-resolution=node"
   ],
-  "require": [
-    "ts-node/register"
-  ],
+  "require": ["ts-node/register"],
   "timeout": 5000,
   "exclude": [
     "src/components/config/create.test.ts",
