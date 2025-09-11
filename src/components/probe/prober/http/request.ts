@@ -114,7 +114,7 @@ export async function httpRequest({
     const responseTime = Date.now() - startTime
 
     // Check if it's a fetch error with DNS or connection error cause
-    if (error instanceof Error && error.cause) {
+    if (error instanceof Error && 'cause' in error) {
       const cause = error.cause as Error
       if (
         'code' in cause &&
