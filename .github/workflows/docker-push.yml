@@ -21,7 +21,7 @@ jobs:
         with:
           # list of Docker images to use as base name for tags
           images: |
-            hyperjump/monika
+            pinax-network/monika
           # generate Docker tags based on the following events/attributes
           tags: |
             type=semver,pattern={{version}}
@@ -34,8 +34,8 @@ jobs:
       - name: Login to DockerHub
         uses: docker/login-action@v3
         with:
-          username: ${{secrets.HYPERJUMP_DOCKER_USERNAME}}
-          password: ${{secrets.HYPERJUMP_DOCKER_PASSWORD}}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v5
