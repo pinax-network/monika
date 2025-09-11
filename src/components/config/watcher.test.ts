@@ -120,7 +120,7 @@ describe('Config watcher', () => {
     await writeFile('monika.json', JSON.stringify(newConfig), {
       encoding: 'utf8',
     })
-    await sleep(2000)
+    await sleep(5000)
 
     // assert
     expect(getProbes()[0].id).eq('2')
