@@ -47,4 +47,4 @@ jobs:
         uses: docker/setup-buildx-action@v3
       - name: Build the image
         run: |
-          docker buildx build ${{ matrix.flags }} -t hyperjump/monika:${{ matrix.platform }} .
+          docker buildx build ${{ matrix.flags }} -t ghcr.io/pinax-network/monika:${{ matrix.platform }} .

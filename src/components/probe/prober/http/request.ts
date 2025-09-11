@@ -111,11 +111,34 @@ export async function httpRequest({
       allowUnauthorized,
     })
   } catch (error: unknown) {
+    const responseTime = Date.now() - startTime
+
+    // Check if it's a fetch error with DNS or connection error cause
+    if (error instanceof Error && 'cause' in error) {
+      const cause = error.cause as Error
+      if (
+        'code' in cause &&
+        (cause.code === 'ENOTFOUND' || cause.code === 'ECONNRESET')
+      ) {
+        return {
+          data: '',
+          body: '',
+          status: cause.code === 'ENOTFOUND' ? 30 : 29, // 30 for DNS errors, 29 for connection reset
+          headers: '',
+          responseTime,
+          result: probeRequestResult.failed,
+          error:
+            cause.code === 'ENOTFOUND'
+              ? 'ENOTFOUND: Domain name could not be resolved. Check if the domain exists or DNS settings.'
+              : 'ECONNRESET: The connection was unexpectedly reset by the remote host.',
+        }
+      }
+    }
+
     const { value, error: undiciErrorValidator } =
       UndiciErrorValidator.validate(error, {
         allowUnknown: true,
       })
-    const responseTime = Date.now() - startTime
     if (!undiciErrorValidator) {
       return handleUndiciError(responseTime, value.cause)
     }
@@ -519,6 +542,6 @@ function handleUndiciError(
     headers: '',
     responseTime,
     result: probeRequestResult.failed,
-    error: getErrorMessage(error),
+    error: getErrorMessage(error) || `Error code: ${error.code || 'unknown'}`,
   }
 }
