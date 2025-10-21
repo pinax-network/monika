@@ -139,7 +139,7 @@ export async function httpRequest({
       UndiciErrorValidator.validate(error, {
         allowUnknown: true,
       })
-    if (!undiciErrorValidator) {
+    if (!undiciErrorValidator && value.cause) {
       return handleUndiciError(responseTime, value.cause)
     }
 
@@ -392,8 +392,21 @@ function transformContentByType(
 
 function handleUndiciError(
   responseTime: number,
-  error: undiciErrors.UndiciError
+  error: undiciErrors.UndiciError | undefined
 ): ProbeRequestResponse {
+  // Guard against undefined error
+  if (!error) {
+    return {
+      data: '',
+      body: '',
+      status: 99,
+      headers: '',
+      responseTime,
+      result: probeRequestResult.failed,
+      error: 'Unknown error occurred',
+    }
+  }
+
   // Define a mapping of error types to their corresponding responses
   const errorMap = [
     {
@@ -482,7 +495,9 @@ function handleUndiciError(
       condition: error instanceof undiciErrors.InformationalError,
       response: {
         status: 26,
-        error: `EINFORMATIONAL: ${error.message}.`,
+        error: `EINFORMATIONAL: ${
+          error?.message || 'Unknown informational error'
+        }.`,
       },
     },
     {
