@@ -47,6 +47,7 @@ describe('monika', () => {
 
   test
     .stderr()
+    .timeout(15_000)
     .do(() => cmd.run(['--config', 'https://example.com/monika.yaml']))
     .catch((error) => {
       expect(error.message).to.contain(
