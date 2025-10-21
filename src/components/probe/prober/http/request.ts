@@ -482,7 +482,7 @@ function handleUndiciError(
       condition: error instanceof undiciErrors.InformationalError,
       response: {
         status: 26,
-        error: `EINFORMATIONAL: ${error.message}.`,
+        error: `EINFORMATIONAL: ${error?.message ?? 'Unknown error'}.`,
       },
     },
     {
