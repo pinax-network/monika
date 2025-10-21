@@ -97,6 +97,6 @@ describe('TLS Checker', () => {
           `${domainDef.domain} security certificate will expire at`
         )
       }
-    })
+    }).timeout(10_000)
   })
 })
