@@ -139,7 +139,7 @@ export async function httpRequest({
       UndiciErrorValidator.validate(error, {
         allowUnknown: true,
       })
-    if (!undiciErrorValidator && value.cause) {
+    if (!undiciErrorValidator) {
       return handleUndiciError(responseTime, value.cause)
     }
 
