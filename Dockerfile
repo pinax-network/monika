@@ -1,4 +1,4 @@
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
 
 RUN apk update && apk add python3 py3-setuptools make gcc
 
@@ -16,7 +16,7 @@ COPY . .
 
 RUN npm pack
 
-FROM node:18-alpine AS runner
+FROM node:22-alpine AS runner
 
 RUN apk update && apk add python3 py3-setuptools make gcc
 
