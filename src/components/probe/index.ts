@@ -74,11 +74,12 @@ export async function doProbe({
       probeConfig: probe,
     })
 
-    const maxAttempts = Math.max(
-      // since we will retry for both incident and recovery, let's just get the biggest threshold
-      probe.incidentThreshold || DEFAULT_INCIDENT_THRESHOLD,
-      probe.recoveryThreshold || DEFAULT_RECOVERY_THRESHOLD
-    )
+    const maxAttempts =
+      Math.max(
+        // since we will retry for both incident and recovery, let's just get the biggest threshold
+        probe.incidentThreshold || DEFAULT_INCIDENT_THRESHOLD,
+        probe.recoveryThreshold || DEFAULT_RECOVERY_THRESHOLD
+      ) - 1
 
     await retry(handleAll, {
       maxAttempts,
