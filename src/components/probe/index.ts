@@ -79,7 +79,7 @@ export async function doProbe({
         // since we will retry for both incident and recovery, let's just get the biggest threshold
         probe.incidentThreshold || DEFAULT_INCIDENT_THRESHOLD,
         probe.recoveryThreshold || DEFAULT_RECOVERY_THRESHOLD
-      ) + 1
+      ) - 1
 
     await retry(handleAll, {
       maxAttempts,
