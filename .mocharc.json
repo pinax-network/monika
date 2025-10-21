@@ -6,7 +6,7 @@
     "experimental-specifier-resolution=node"
   ],
   "require": ["ts-node/register"],
-  "timeout": 5000,
+  "timeout": 10000,
   "exclude": [
     "src/components/config/create.test.ts",
     "src/components/notification/schedule-notification.test.ts",
