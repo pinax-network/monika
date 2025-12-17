@@ -127,7 +127,7 @@ export class HTTPProber extends BaseProber {
 
         if (this.hasIncident()) {
           // this probe is still in incident state
-          this.logMessage(false, getAssertionMessage(alert.assertion))
+          this.logMessage(false, getAssertionMessage(alert.assertion, response))
           return
         }
 
@@ -259,7 +259,7 @@ export class HTTPProber extends BaseProber {
 
     this.logMessage(
       false,
-      getAssertionMessage(triggeredAlert.assertion),
+      getAssertionMessage(triggeredAlert.assertion, response),
       getNotificationMessage({ isIncident: true })
     )
   }
@@ -326,8 +326,11 @@ function getErrorMessage(message: string): string {
   return `ERROR: ${message}`
 }
 
-function getAssertionMessage(message: string): string {
-  return `ASSERTION: ${message}`
+function getAssertionMessage(
+  assertion: string,
+  response: ProbeRequestResponse
+): string {
+  return `ASSERTION: ${assertion} (status: ${response.status}, time: ${response.responseTime}ms)`
 }
 
 function getNotificationMessage({
